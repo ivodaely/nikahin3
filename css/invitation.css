@@ -1,0 +1,241 @@
+/* ============================================
+   NIKAHIN — Public Invitation Viewer
+   Per-invitation CSS variables are injected by view.php from the design spec.
+============================================ */
+
+:root {
+  /* Defaults — overridden inline per-invitation */
+  --inv-primary:   #F4EDE0;
+  --inv-secondary: #EAD9BC;
+  --inv-accent:    #C8943A;
+  --inv-ink:       #2C1A0E;
+  --inv-paper:     #FAF6EE;
+  --inv-head:      'Playfair Display', Georgia, serif;
+  --inv-body:      'Inter', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.inv-page {
+  font-family: var(--inv-body);
+  background: var(--inv-primary);
+  color: var(--inv-ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.7;
+}
+
+.inv-page h1, .inv-page h2, .inv-page h3, .inv-page h4 {
+  font-family: var(--inv-head);
+  letter-spacing: -.01em;
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.inv-page a { color: var(--inv-accent); }
+
+.inv-shell { max-width: 720px; margin: 0 auto; }
+
+/* ── Cover ── */
+.inv-cover {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 80px 28px;
+  background: linear-gradient(160deg, var(--inv-primary), var(--inv-secondary));
+  overflow: hidden;
+}
+.inv-cover::before, .inv-cover::after {
+  content: ''; position: absolute; pointer-events: none;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, var(--inv-accent), transparent 65%);
+  opacity: .14;
+}
+.inv-cover::before { top: -120px; left: -100px; }
+.inv-cover::after  { bottom: -120px; right: -100px; }
+.inv-cover-tag {
+  position: relative; font-size: .78rem; letter-spacing: .35em;
+  text-transform: uppercase; color: var(--inv-ink); opacity: .55;
+  margin-bottom: 16px;
+}
+.inv-cover-names {
+  position: relative;
+  font-family: var(--inv-head); font-size: clamp(2.4rem, 7vw, 4.4rem);
+  font-style: italic; color: var(--inv-ink); margin-bottom: 8px; line-height: 1.1;
+}
+.inv-cover-and {
+  position: relative; display: block; font-style: italic;
+  font-size: 1.1rem; color: var(--inv-accent); margin: 6px 0 12px; opacity: .9;
+}
+.inv-cover-date {
+  position: relative; padding-top: 18px; border-top: 1px solid var(--inv-accent);
+  font-size: .85rem; letter-spacing: .25em; text-transform: uppercase; color: var(--inv-ink);
+  margin-top: 18px; display: inline-block;
+}
+.inv-cover-scroll {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--inv-ink); opacity: .5; animation: bob 2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,8px);} }
+
+/* ── Section frame ── */
+.inv-section { padding: 72px 28px; }
+.inv-section.tinted { background: var(--inv-paper); }
+.inv-section.dark { background: var(--inv-ink); color: var(--inv-paper); }
+.inv-section.dark h2 { color: var(--inv-paper); }
+
+.inv-section h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  text-align: center; font-style: italic; margin-bottom: 8px;
+}
+.inv-section .invocation, .inv-section .desc {
+  max-width: 540px; margin: 0 auto 32px; text-align: center;
+  font-size: 1rem; opacity: .85; line-height: 1.85;
+}
+.inv-rule { display: block; width: 60px; height: 1px;
+  background: var(--inv-accent); margin: 14px auto 24px; }
+
+/* ── Couple cards ── */
+.inv-couple-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  max-width: 720px; margin: 0 auto;
+}
+.inv-person {
+  background: var(--inv-paper);
+  border-radius: 24px; padding: 36px 24px; text-align: center;
+  box-shadow: 0 12px 36px rgba(0,0,0,.06);
+}
+.inv-person-photo {
+  width: 140px; height: 140px; border-radius: 50%; overflow: hidden;
+  margin: 0 auto 18px; background: var(--inv-secondary);
+  border: 3px solid var(--inv-accent);
+}
+.inv-person-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.inv-person-name { font-family: var(--inv-head); font-size: 1.6rem;
+  font-style: italic; margin-bottom: 4px; }
+.inv-person-meta { font-size: .85rem; opacity: .75; line-height: 1.6; }
+.inv-person-bio { font-size: .92rem; opacity: .85; margin-top: 12px; line-height: 1.7; }
+.inv-person-fam { margin-top: 12px; font-size: .82rem; opacity: .7; line-height: 1.7; padding-top: 12px; border-top: 1px dashed currentColor; }
+
+/* ── Story ── */
+.inv-story { max-width: 580px; margin: 0 auto; text-align: center;
+  font-size: 1.05rem; line-height: 1.95; }
+
+/* ── Schedule events ── */
+.inv-events {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px; max-width: 720px; margin: 0 auto;
+}
+.inv-event {
+  background: var(--inv-paper); border-radius: 20px; padding: 28px 22px;
+  border: 1px solid var(--inv-secondary); text-align: center;
+}
+.inv-event h3 { font-size: 1.3rem; font-style: italic; margin-bottom: 12px; }
+.inv-event .dt {
+  font-family: var(--inv-head); font-size: 1.6rem; font-weight: 600;
+  color: var(--inv-accent); margin-bottom: 6px;
+}
+.inv-event .time { font-size: .92rem; margin-bottom: 12px; opacity: .85; }
+.inv-event .venue { font-size: .9rem; opacity: .8; line-height: 1.6; }
+
+/* ── Gift accounts ── */
+.inv-gifts { max-width: 520px; margin: 0 auto; display: grid; gap: 16px; }
+.inv-gift-card {
+  background: var(--inv-paper); border-radius: 16px; padding: 22px 24px;
+  border: 1px solid var(--inv-secondary); text-align: center;
+}
+.inv-gift-bank { font-size: .82rem; opacity: .7; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+.inv-gift-num {
+  font-family: var(--inv-head); font-size: 1.4rem; letter-spacing: .08em;
+  margin-bottom: 4px; word-break: break-all;
+}
+.inv-gift-holder { font-size: .9rem; opacity: .8; margin-bottom: 12px; }
+.inv-gift-copy {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; background: var(--inv-accent); color: var(--inv-paper);
+  border: 0; border-radius: 100px; cursor: pointer; font-size: .82rem; font-weight: 600;
+  letter-spacing: .03em;
+}
+.inv-gift-copy:hover { opacity: .9; }
+
+/* ── RSVP ── */
+.inv-rsvp { max-width: 520px; margin: 0 auto;
+  background: var(--inv-paper); border-radius: 24px; padding: 32px 28px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.08);
+}
+.inv-rsvp .field { margin-bottom: 16px; }
+.inv-rsvp label { display: block; font-size: .78rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; opacity: .8; }
+.inv-rsvp input, .inv-rsvp select, .inv-rsvp textarea {
+  width: 100%; padding: 12px 14px; border: 1.5px solid var(--inv-secondary);
+  border-radius: 8px; background: var(--inv-primary); color: var(--inv-ink);
+  font-family: var(--inv-body); font-size: 1rem;
+}
+.inv-rsvp input:focus, .inv-rsvp select:focus, .inv-rsvp textarea:focus {
+  outline: 0; border-color: var(--inv-accent);
+}
+.inv-rsvp .opts { display: flex; gap: 8px; }
+.inv-rsvp .opts input[type="radio"] { display: none; }
+.inv-rsvp .opts label {
+  flex: 1; padding: 12px; border: 1.5px solid var(--inv-secondary);
+  border-radius: 8px; text-align: center; cursor: pointer; margin: 0;
+  font-size: .9rem; letter-spacing: .04em; text-transform: none;
+  transition: all .2s ease;
+}
+.inv-rsvp .opts input[type="radio"]:checked + label {
+  background: var(--inv-accent); color: var(--inv-paper); border-color: var(--inv-accent);
+}
+.inv-rsvp button {
+  width: 100%; padding: 14px; background: var(--inv-ink); color: var(--inv-paper);
+  border: 0; border-radius: 100px; font-weight: 600; cursor: pointer; font-size: 1rem;
+  margin-top: 8px;
+}
+
+/* ── Guestbook ── */
+.inv-gb-form { max-width: 520px; margin: 0 auto 28px;
+  background: var(--inv-paper); padding: 24px; border-radius: 20px; }
+.inv-gb-form .field { margin-bottom: 12px; }
+.inv-gb-form input, .inv-gb-form textarea {
+  width: 100%; padding: 12px 14px; border: 1.5px solid var(--inv-secondary);
+  border-radius: 8px; background: var(--inv-primary); color: var(--inv-ink);
+  font-family: var(--inv-body); font-size: 1rem;
+}
+.inv-gb-form button {
+  padding: 10px 22px; background: var(--inv-accent); color: var(--inv-paper);
+  border: 0; border-radius: 100px; cursor: pointer; font-weight: 600;
+}
+
+.inv-gb-list { max-width: 580px; margin: 0 auto; display: grid; gap: 12px; }
+.inv-gb-msg {
+  background: var(--inv-paper); padding: 18px 22px; border-radius: 16px;
+  border-left: 3px solid var(--inv-accent);
+}
+.inv-gb-msg-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px; font-size: .82rem; opacity: .7;
+}
+.inv-gb-msg-name { font-weight: 700; color: var(--inv-ink); opacity: 1; }
+.inv-gb-msg-text { font-size: .95rem; line-height: 1.7; }
+
+/* ── Footer ── */
+.inv-foot {
+  background: var(--inv-ink); color: var(--inv-paper);
+  padding: 36px 28px; text-align: center;
+}
+.inv-foot-names { font-family: var(--inv-head); font-style: italic; font-size: 1.4rem; margin-bottom: 8px; }
+.inv-foot-copy { font-size: .82rem; opacity: .6; }
+
+/* ── Watermark ── */
+.inv-watermark {
+  position: fixed; bottom: 16px; right: 16px; z-index: 50;
+  padding: 8px 16px; background: rgba(0,0,0,.7); color: white;
+  border-radius: 100px; font-size: .75rem; font-family: system-ui;
+  letter-spacing: .05em; pointer-events: none;
+}
+
+/* ── Small screens ── */
+@media (max-width: 540px) {
+  .inv-couple-grid { grid-template-columns: 1fr; }
+  .inv-section { padding: 56px 22px; }
+  .inv-cover { padding: 60px 22px; }
+}

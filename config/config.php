@@ -9,7 +9,7 @@
 // ---------------------------------------------------------
 // Database
 // ---------------------------------------------------------
-define('DB_HOST', getenv('NIKAHIN_DB_HOST') ?: '127.0.0.1');
+define('DB_HOST', getenv('NIKAHIN_DB_HOST') ?: 'localhost');
 define('DB_PORT', getenv('NIKAHIN_DB_PORT') ?: '3306');
 define('DB_NAME', getenv('NIKAHIN_DB_NAME') ?: 'nikahin');
 define('DB_USER', getenv('NIKAHIN_DB_USER') ?: 'root');

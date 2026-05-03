@@ -44,7 +44,7 @@ function gallery_palette(?string $designJson, int $idx): array {
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,800,700,500,400&f[]=general-sans@600,500,400&display=swap" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <link rel="stylesheet" href="<?= APP_URL ?>/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
